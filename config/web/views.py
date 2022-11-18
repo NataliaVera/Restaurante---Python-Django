@@ -1,6 +1,7 @@
 from django.shortcuts import render
 
 from web.formularios.formularioPlatos import FormularioRegistroPlatos
+from web.formularios.formularioEmpleados import FormularioRegistroEmpleados
 
 # Create your views here.
 #Cada vista es una funcion de python 
@@ -26,3 +27,19 @@ def Platos(request):
             datosLimpios = datosFormulario.cleaned_data
 
     return render(request, 'platos.html', diccionarioEnvioDatos)
+
+def Empleados(request):
+
+    formularioEmpleados = FormularioRegistroEmpleados()
+
+    diccionarioEnvioDatosEmpleados={
+        'formEmpleados': formularioEmpleados
+    }
+
+    if request.method == 'POST':
+        datosFormulario = FormularioRegistroEmpleados(request.POST)
+        
+        if datosFormulario.is_valid():
+            datosLimpios = datosFormulario.cleaned_data
+
+    return render(request, 'empleados.html', diccionarioEnvioDatosEmpleados)
