@@ -5,3 +5,6 @@ from django.shortcuts import render
 
 def Home(request):
     return render(request, 'index.html')
+
+def Platos(request):
+    return render(request, 'platos.html')

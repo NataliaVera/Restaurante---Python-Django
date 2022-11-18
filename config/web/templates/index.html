@@ -13,7 +13,7 @@
 </head>
 <body>
     <header>
-
+        {%include './shared/menu.html'%}
     </header>
     <main>
         <div class="banner">
@@ -49,9 +49,24 @@
                 </div>
             </div>
         </section>
+        <section>
+            <div class="container-fluid my-5">
+                <div class="row p-5">
+                    <div class="col-12 col-md-4">
+                        <img src="../static/img/plato1.jpg" alt="plato1" class="img-fluid">
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <img src="../static/img/plato2.jpg" alt="plato2" class="img-fluid">
+                    </div>
+                    <div class="col-12 col-md-4">
+                        <img src="../static/img/plato3.jpg" alt="plato3" class="img-fluid">
+                    </div>
+                </div>
+            </div> 
+        </section>
     </main>
     <footer>
-
+        {%include './shared/footer.html'%}
     </footer>
     <script src="../static/js/wow.min.js"></script>
     <script>
