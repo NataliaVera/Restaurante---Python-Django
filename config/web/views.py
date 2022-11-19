@@ -2,6 +2,7 @@ from django.shortcuts import render
 
 from web.formularios.formularioPlatos import FormularioRegistroPlatos
 from web.formularios.formularioEmpleados import FormularioRegistroEmpleados
+from web.models import Platos, Empleados
 
 # Create your views here.
 #Cada vista es una funcion de python 
@@ -9,7 +10,7 @@ from web.formularios.formularioEmpleados import FormularioRegistroEmpleados
 def Home(request):
     return render(request, 'index.html')
 
-def Platos(request):
+def PlatosVista(request):
     #cargar el formulario de registros de platos 
     formulario = FormularioRegistroPlatos()
 
@@ -25,10 +26,20 @@ def Platos(request):
         
         if datosFormulario.is_valid():
             datosLimpios = datosFormulario.cleaned_data
+            #Enviando datos a la DB
+            platoNuevo=Platos(
+                nombre= datosLimpios["nombrePlato"], 
+                descripcion=datosLimpios["descripcionPlato"], 
+                imagen=datosLimpios["fotoPlato"], 
+                precio=datosLimpios["precioPlato"],
+                categoria=datosLimpios["tipoPlato"]
+            )
+            platoNuevo.save()
+            
 
     return render(request, 'platos.html', diccionarioEnvioDatos)
 
-def Empleados(request):
+def EmpleadosVista(request):
 
     formularioEmpleados = FormularioRegistroEmpleados()
 
@@ -41,5 +52,12 @@ def Empleados(request):
         
         if datosFormulario.is_valid():
             datosLimpios = datosFormulario.cleaned_data
+            empleadoNuevo= Empleados(
+                nombre= datosLimpios["nombreEmpleado"],
+                apellido=datosLimpios["apellidoEmpleado"], 
+                telefono=datosLimpios["telefonoEmpleado"], 
+                cargo=datosLimpios["cargoEmpleado"]
+            )
+            empleadoNuevo.save()
 
     return render(request, 'empleados.html', diccionarioEnvioDatosEmpleados)
